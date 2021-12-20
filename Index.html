@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dream Yatra</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <form class="signup-form" action="/register" method="post">
+
+      <!-- form header -->
+      <div class="form-header">
+        <h1>Dream Yatra</h1>
+      </div>
+
+      <!-- form body -->
+      <div class="form-body">
+
+        <!-- Firstname and Lastname -->
+        <div class="horizontal-group">
+          <div class="form-group">
+            <label for="firstname" class="label-title">Full name *</label>
+            <input type="text" id="firstname" class="form-input" placeholder="enter your first name" required="required" />
+          </div>
+        </div>
+		
+		<div class="horizontal-group">
+          <div class="form-group left">
+            <label for="firstname" class="label-title">From Date:</label>
+            <input type="date" id="Startdate" />
+          </div>
+		  
+		  <div class="form-group right">
+            <label for="firstname" class="label-title">To Date:</label>
+            <input type="date" id="Enddate" />
+          </div>
+        </div>
+		
+        <!-- Budget -->
+        <div class="horizontal-group">
+          <div class="form-group right">
+            <label for="experience" class="label-title">Budget</label>
+            <input type="range" min="500" max="10000" step="50"  value="0" id="experience" class="form-input" onChange="change();" style="height:28px;width:78%;padding:0;">
+			<br/>
+            <span id="range-label">500 Rs</span>
+          </div>
+        </div>
+
+        <!-- location-->
+        <div class="form-group right">
+          <label for="location" class="label-title">Location</label>
+          <select>
+            <option selected disabled>--Select City--</option>
+            <option>Goa</option>
+            <option>New Delhi</option>
+            <option>Kerla</option>
+            <option>Mumbai</option>
+            <option>Chennai</option>
+            <option>Uttarkhand</option>
+            <option>Punjab</option>
+            <option>Manali</option>
+            <option>Gujarat</option>
+        </select>
+        </div>
+		
+        <!-- Condition -->
+        <div class="horizontal-group">
+          <div class="form-group right">
+            <label class="label-title">Check Me</label>
+            <div >
+              <label><input type="checkbox" class="checkbox_check" value="Web" checked>I Know My Hotel</label>
+            </div>
+          </div>
+        </div>
+		
+        <!-- Description -->
+        <div class="form-group Desc">
+          <label for="choose-file" class="label-title">Add Detail:</label>
+          <textarea class="form-input" rows="4" cols="50" style="height:auto"></textarea>
+        </div>
+      </div>
+
+      <!-- form-footer -->
+      <div class="form-footer">
+        <button type="submit" class="btn">Create</button>
+      </div>
+
+    </form>
+
+    <!-- Script -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+		
+		$( document ).ready(function() {
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			if(dd<10){
+					dd='0'+dd
+				} 
+				if(mm<10){
+					mm='0'+mm
+				} 
+			
+			today = yyyy+'-'+mm+'-'+dd;
+			$('#Startdate').attr('min',today);
+			$('input[type="checkbox"]').click(function(){
+				if($(this).prop("checked") == true){
+					$('.Desc').show();
+				}
+				else if($(this).prop("checked") == false){
+					$('.Desc').hide();
+				}
+			});
+		});
+		
+	  var rangeLabel = document.getElementById("range-label"); 
+      function change() {
+      rangeLabel.innerText = experience.value + " Rs";
+      }
+    </script>
+
+  </body>
+</html>
